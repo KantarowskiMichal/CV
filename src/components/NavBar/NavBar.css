@@ -1,0 +1,67 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #5a4a6d; /* Lighter shade of purple */
+  padding: 10px 20px; /* Added horizontal padding */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it stays on top of other content */
+  display: flex; /* Use flexbox for alignment */
+  justify-content: space-between; /* Space out brand and nav items */
+  align-items: center;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  color: #f0f0f0;
+}
+
+.navbar-icon {
+  font-size: 1.5em;
+  margin-right: 10px;
+  color: #f0f0f0; /* Ensure icon color is consistent */
+}
+
+.navbar-icon:hover {
+  color: #f0f0f0; /* Prevent color change on hover */
+}
+
+.navbar-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #f0f0f0; /* Ensure title color is consistent */
+}
+
+.navbar-title:hover {
+  color: #f0f0f0; /* Prevent color change on hover */
+}
+
+.navbar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px; /* Space between navigation items */
+  flex-grow: 1; /* Allow list to take available space */
+}
+
+.navbar-item {
+  margin: 0;
+}
+
+.navbar-button {
+  background: none;
+  border: none;
+  color: #f0f0f0; /* Light text color */
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
+}
+
+.navbar-button:hover {
+  color: #61dafb; /* Highlight color on hover */
+}

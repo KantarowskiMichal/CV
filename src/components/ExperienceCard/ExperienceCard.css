@@ -1,0 +1,57 @@
+.experience-card {
+  width: 100vw;
+  height: 100vh;
+  background-color: #3a2a4d; /* Same background as other cards */
+  display: flex;
+  flex-direction: row; /* Default to row for desktop */
+  align-items: flex-start;
+  justify-content: space-around;
+  scroll-snap-align: start;
+  padding: 10vh 50px 50px;
+  box-sizing: border-box;
+}
+
+.experience-column {
+  color: #f0f0f0;
+  max-width: 1000px;
+  min-width: 1000px;
+  margin: 0 50px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.experience-column h1 {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.separator {
+  width: 2px;
+  height: 80%;
+  background-color: #f0f0f0;
+  display: block; /* Ensure it's always visible */
+}
+
+@media (max-aspect-ratio: 3/4) {
+  .experience-card {
+    flex-direction: column-reverse; /* Stack columns vertically on mobile, with work experience first */
+    justify-content: flex-end;
+    align-items: center;
+    padding: 70px 20px 20px 20px; /* Adjust padding for mobile, adding space for navbar */
+    height: 100vh; /* Ensure it takes full viewport height */
+  }
+
+  .experience-column {
+    margin: 20px 0; /* Adjust margins for vertical stacking */
+    max-width: 90%; /* Ensure it takes full width on mobile */
+    min-width: 90%; /* Remove min-width constraint */
+    flex-grow: 0;
+  }
+
+  .separator {
+    width: 80%; /* Make separator horizontal */
+    height: 2px; /* Adjust height for horizontal separator */
+    margin: 20px auto; /* Center horizontal separator */
+  }
+}
