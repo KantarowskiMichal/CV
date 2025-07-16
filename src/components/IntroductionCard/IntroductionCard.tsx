@@ -27,7 +27,7 @@ const IntroductionCard: FC<IntroductionCardProps> = () => (
       </div>
     </div>
     <div className="profile-picture">
-      <img src="/my-picture.jpg" alt="A photograph of Michal Kantarowski" />
+      <img src={`${process.env.PUBLIC_URL}/my-picture.jpg`} alt="A photograph of Michal Kantarowski" />
     </div>
   </div>
 );
