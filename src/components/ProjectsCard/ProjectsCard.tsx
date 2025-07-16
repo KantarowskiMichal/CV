@@ -70,6 +70,7 @@ const ProjectsCard = forwardRef<ProjectsCardRef, ProjectsCardProps>(({ setIsScro
       {isExpanded && <div className="overlay" onClick={handleClose}></div>}
       <ProjectItem
         title="CV Website"
+        description="This project is a personal portfolio website built with React. It showcases my skills, experience, and projects in an interactive and visually appealing manner. The website features smooth animations, responsive design, and a clean user interface."
         githubLink="https://github.com/Kanta-V/CV_Website"
         isExpanded={isExpanded}
         onExpand={handleToggle}
