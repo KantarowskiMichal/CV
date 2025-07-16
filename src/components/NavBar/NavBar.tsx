@@ -6,11 +6,12 @@ import './NavBar.css';
 interface NavBarProps {
   cardNames: string[];
   onNavigate: (index: number) => void;
+  onCollapse: () => void;
 }
 
-const NavBar: FC<NavBarProps> = ({ cardNames, onNavigate }) => {
+const NavBar: FC<NavBarProps> = ({ cardNames, onNavigate, onCollapse }) => {
   return (
-    <nav className="navbar">
+    <nav className="navbar" onClick={onCollapse}>
       <div className="navbar-brand">
         <FontAwesomeIcon icon={faFileAlt} className="navbar-icon" />
         <span className="navbar-title">Michal Kantarowski's CV</span>

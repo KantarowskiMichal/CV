@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import './ProjectsCard.css';
 import ProjectItem from './ProjectItem';
 
@@ -6,7 +6,11 @@ interface ProjectsCardProps {
   setIsScrollingEnabled: (isScrollingEnabled: boolean) => void;
 }
 
-const ProjectsCard: FC<ProjectsCardProps> = ({ setIsScrollingEnabled }) => {
+export interface ProjectsCardRef {
+  handleClose: () => void;
+}
+
+const ProjectsCard = forwardRef<ProjectsCardRef, ProjectsCardProps>(({ setIsScrollingEnabled }, ref) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const itemRef = useRef<HTMLDivElement>(null);
 
@@ -18,9 +22,15 @@ const ProjectsCard: FC<ProjectsCardProps> = ({ setIsScrollingEnabled }) => {
   };
 
   const handleClose = () => {
-    setIsExpanded(false);
-    setIsScrollingEnabled(true);
+    if (isExpanded) {
+      setIsExpanded(false);
+      setIsScrollingEnabled(true);
+    }
   };
+
+  useImperativeHandle(ref, () => ({
+    handleClose,
+  }));
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
@@ -67,6 +77,6 @@ const ProjectsCard: FC<ProjectsCardProps> = ({ setIsScrollingEnabled }) => {
       />
     </div>
   );
-};
+});
 
 export default ProjectsCard;
