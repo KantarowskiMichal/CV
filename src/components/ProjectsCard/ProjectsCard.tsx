@@ -58,12 +58,11 @@ const ProjectsCard: FC<ProjectsCardProps> = ({ setIsScrollingEnabled }) => {
   return (
     <div className="projects-card">
       {isExpanded && <div className="overlay" onClick={handleClose}></div>}
-      <ProjectItem 
-        ref={itemRef}
+      <ProjectItem
         title="CV Website"
         githubLink="https://github.com/Kanta-V/CV_Website"
         isExpanded={isExpanded}
-        onToggle={handleToggle}
+        onExpand={handleToggle}
         onClose={handleClose}
       />
     </div>

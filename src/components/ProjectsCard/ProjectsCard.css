@@ -1,6 +1,6 @@
 .projects-card {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     height: 100vh;
     background-color: #3a2a4d;
@@ -12,6 +12,6 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-  z-index: 999; /* Below the expanded item, above everything else */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
