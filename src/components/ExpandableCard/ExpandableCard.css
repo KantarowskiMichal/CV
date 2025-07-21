@@ -1,0 +1,37 @@
+.expandable-card-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: show;
+}
+
+.expandable-card {
+    background-color: #4a3a5d;
+    border-radius: 10px;
+    padding: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.click-intercepting-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 999;
+}
+
+.expandable-card.expanded {
+    z-index: 1000;
+    cursor: default;
+}

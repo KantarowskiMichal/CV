@@ -1,0 +1,74 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #5a4a6d; /* Lighter shade of purple */
+  height: 50px;
+  padding-left: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 998; /* Ensure it stays on top of other content */
+  display: flex; /* Use flexbox for alignment */
+  justify-content: space-between; /* Space out brand and nav items */
+  align-items: center;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  color: #f0f0f0;
+}
+
+.navbar-icon {
+  font-size: 1.5em;
+  margin-right: 10px;
+  color: #f0f0f0; /* Ensure icon color is consistent */
+}
+
+.navbar-icon:hover {
+  color: #f0f0f0; /* Prevent color change on hover */
+}
+
+.navbar-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #f0f0f0; /* Ensure title color is consistent */
+}
+
+.navbar-title:hover {
+  color: #f0f0f0; /* Prevent color change on hover */
+}
+
+.navbar-list {
+  list-style: none;
+  margin: 0 0 0 20px;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+  height: 100%;
+  border-left: 1px solid rgba(240, 240, 240, 0.2); /* Add left border for separation */
+}
+
+.navbar-item {
+  margin: 0;
+}
+
+.navbar-item + .navbar-item {
+  border-left: 1px solid rgba(240, 240, 240, 0.2);
+}
+
+.navbar-button {
+  background: none;
+  border: none;
+  color: #f0f0f0; /* Light text color */
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  height: 100%;
+}
+
+.navbar-button:hover {
+  background-color: #6b5a83;
+}

@@ -1,0 +1,15 @@
+.projects-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #3a2a4d;
+}
+
+.card-wrapper{
+  width: 500px;
+  height: 500px;
+  overflow: visible;
+}
