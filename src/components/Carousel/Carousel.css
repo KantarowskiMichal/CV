@@ -19,6 +19,10 @@
   transform: scale(0.9);
 }
 
+.non-center-item:hover {
+  transform: scale(0.92) translate(-5px, -5px);
+}
+
 .carousel-item:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -52,5 +56,5 @@
 }
 
 .dot.active {
-  background-color: #333;
+  background-color: #23002a;
 }

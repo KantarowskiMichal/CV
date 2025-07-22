@@ -24,9 +24,17 @@ const ExperienceCard: FC = () => {
           institution="Hatless Studio"
           qualification="Backend Developer"
           timeRange="Nov 2023 - Feb 2024"
-          description=""
+          description="I have been hired at Hatless Studio as a backend developer following a technical interview, I have completed the training in Django there and gained some knowledge regarding React as it was the fronted framework used by the company. Sadly, the company has been closed down due to financial issues, but I have gained valuable experience in working with a team and using Git for version control."
           isExpanded={expandedItem === 'Hatless Studio'}
           onToggle={() => handleToggle('Hatless Studio')}
+        />
+        <ExperienceItem
+          institution="Your Company Name Here?"
+          qualification="Future Position"
+          timeRange="Now - Future"
+          description="I'm hoping you, the reader of this website, can help me fill this section with more amazing experiences."
+          isExpanded={expandedItem === 'Your Company Name Here?'}
+          onToggle={() => handleToggle('Your Company Name Here?')}
         />
       </div>
       <div className="separator"></div>

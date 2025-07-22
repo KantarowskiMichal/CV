@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, Children, FC, ReactNode } from 'react';
+import { useSpring, animated } from '@react-spring/web';
 import './Carousel.css';
 
 interface CarouselProps {
@@ -6,110 +7,117 @@ interface CarouselProps {
   numVisibleItems?: number;
 }
 
+const DEFAULT_TRANSITION_DURATION = 300;
+const MIN_STEP_DURATION = 100;
+
 const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
-  /* ────────────────────────────
-     1.  State & Refs
-  ──────────────────────────── */
   const rawItems = Children.toArray(children);
   const realCount = rawItems.length;
+  const totalItems = realCount + 2 * numVisibleItems;
 
-  // Start on the first real item (after the head clones)
-  const [currentIndex, rawSetCurrentIndex] = useState(numVisibleItems);
-  const [itemWidth, setItemWidth]   = useState(0);
-  const [transitionDuration, setTransitionDuration] = useState(300);               // ms
+  const [currentIndex, setCurrentIndex] = useState(numVisibleItems);
+  const [itemWidth, setItemWidth] = useState(0);
+  const [transitionDuration, setTransitionDuration] = useState(DEFAULT_TRANSITION_DURATION);
 
-  const trackRef    = useRef<HTMLDivElement>(null);
-  const containerRef= useRef<HTMLDivElement>(null);
-  const itemRef     = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const itemRef = useRef<HTMLDivElement>(null);
 
-  /* ────────────────────────────
-     2.  Build `[tail clones] + real + [head clones]`
-  ──────────────────────────── */
+  const currentIndexRef = useRef(currentIndex);
+  const itemWidthRef = useRef(itemWidth);
+
   const items = [
     ...rawItems.slice(-numVisibleItems),
     ...rawItems,
     ...rawItems.slice(0, numVisibleItems),
   ];
-  const totalWithClones = items.length;
 
-  /* ────────────────────────────
-     3.  Helpers
-  ──────────────────────────── */
-  const getTranslateX = () => {
-    const containerWidth = itemWidth * numVisibleItems;
-    const offset = (itemWidth * currentIndex) + itemWidth / 2 - containerWidth / 2;
+  const [springs, api] = useSpring(() => ({ from: { x: 0 } }));
+
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  }, [currentIndex]);
+
+  useEffect(() => {
+    itemWidthRef.current = itemWidth;
+  }, [itemWidth]);
+
+  useEffect(() => {
+    if (itemRef.current) {
+      const width = itemRef.current.offsetWidth;
+      setItemWidth(width);
+      itemWidthRef.current = width;
+      api.start({
+        x: getTranslateX(numVisibleItems),
+        config: { duration: 0 },
+      });
+    }
+  }, [numVisibleItems]);
+
+  const getTranslateX = (index: number) => {
+    const width = itemWidthRef.current;
+    const containerWidth = width * numVisibleItems;
+    const offset = (width * index) + width / 2 - containerWidth / 2;
     return -offset;
   };
 
   const jumpWithoutAnimation = (target: number) => {
-    if (!trackRef.current) return;
-    setTransitionDuration(0); // Temporarily disable transition
-    
-    rawSetCurrentIndex(target);
-    // re‑enable transition on the next frame
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setTransitionDuration(300); // Reset to default transition duration
-      });
-      });
+    setTransitionDuration(0);
+    api.start({
+      x: getTranslateX(target),
+      config: { duration: 0 },
+      onResolve: () => setTransitionDuration(DEFAULT_TRANSITION_DURATION),
+    });
+    setCurrentIndex(target);
   };
 
-  /* ────────────────────────────
-     4.  Step‑by‑step animation
-  ──────────────────────────── */
   const stepToIndex = (target: number) => {
-    if (target === currentIndex) return;
+    const current = currentIndexRef.current;
+    if (target === current) return;
 
-    const direction   = Math.sign(target - currentIndex);         // +1 or -1
-    const stepsNeeded = Math.abs(target - currentIndex);
+    const direction = target > current ? 1 : -1;
+    const steps = Math.abs(target - current);
+    const duration = Math.max(DEFAULT_TRANSITION_DURATION / steps, MIN_STEP_DURATION);
 
-    for (let i = 1; i <= stepsNeeded; i++) {
-      setTimeout(() => {
-        rawSetCurrentIndex(prev => prev + direction);
-      }, (i - 1) * transitionDuration);
-    }
+    setTransitionDuration(duration);
+    stepInDirection(direction, steps, duration);
   };
 
-  /* ────────────────────────────
-     5.  Snap back if we walk into clones
-  ──────────────────────────── */
-  useEffect(() => {
-    // Wait exactly one frame (= one CSS transition) before checking bounds
-    const id = setTimeout(() => {
-      if (currentIndex >= realCount + numVisibleItems) {
-        jumpWithoutAnimation(numVisibleItems);                         // back to first real
-      } else if (currentIndex < numVisibleItems) {
-        jumpWithoutAnimation(realCount + numVisibleItems - 1);         // back to last real
-      }
-    }, transitionDuration);
+  const stepInDirection = (direction: number, remainingSteps: number, duration: number) => {
+    const nextIndex = currentIndexRef.current + direction;
 
-    return () => clearTimeout(id);
-  }, [currentIndex, realCount, numVisibleItems, transitionDuration]);
+    api.start({
+      x: getTranslateX(nextIndex),
+      config: { duration },
+      onResolve: () => {
+        remainingSteps--;
+        if (remainingSteps > 0) {
+          stepInDirection(direction, remainingSteps, duration);
+        } else {
+          if (nextIndex >= realCount + numVisibleItems) {
+            jumpWithoutAnimation(nextIndex - realCount);
+          } else if (nextIndex < numVisibleItems) {
+            const jumpIndex = realCount + numVisibleItems - (numVisibleItems - nextIndex);
+            jumpWithoutAnimation(jumpIndex);
+          }
+        }
+      },
+    });
 
-  /* ────────────────────────────
-     6.  Measure width once items render
-  ──────────────────────────── */
-  useEffect(() => {
-    debugger;
-    if (itemRef.current) setItemWidth(itemRef.current.offsetWidth);
-  }, [numVisibleItems]);
+    currentIndexRef.current = nextIndex;
+    setCurrentIndex(nextIndex);
+  };
 
-  /* ────────────────────────────
-     7.  Render
-  ──────────────────────────── */
   return (
     <div
       className="carousel-container"
-      ref={containerRef}
       style={{ width: `${itemWidth * numVisibleItems}px` }}
     >
-      <div
+      <animated.div
         className="carousel-track"
         ref={trackRef}
         style={{
-          transform: `translateX(${getTranslateX()}px)`,
-          transition: `transform ${transitionDuration}ms ease-in-out`,
-          width: `${itemWidth * totalWithClones}px`,
+          ...springs,
+          width: `${itemWidth * totalItems}px`,
         }}
       >
         {items.map((item, i) => {
@@ -118,7 +126,7 @@ const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
           return (
             <div
               key={i}
-              ref={i === numVisibleItems ? itemRef : null} // first real item
+              ref={i === numVisibleItems ? itemRef : null}
               className={`carousel-item ${isCenter ? '' : 'non-center-item'}`}
               style={{
                 transition: `transform ${transitionDuration}ms ease-in-out`,
@@ -134,16 +142,13 @@ const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
             </div>
           );
         })}
-      </div>
+      </animated.div>
 
-      {/* Dots always point to the “real” cards */}
       <div className="carousel-dots">
         {rawItems.map((_, i) => (
           <button
             key={i}
-            className={`dot ${
-              currentIndex === i + numVisibleItems ? 'active' : ''
-            }`}
+            className={`dot ${currentIndex === i + numVisibleItems ? 'active' : ''}`}
             onClick={() => stepToIndex(i + numVisibleItems)}
           />
         ))}

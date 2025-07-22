@@ -13,8 +13,7 @@
 
 .experience-column {
   color: #f0f0f0;
-  max-width: 1000px;
-  min-width: 1000px;
+  width: 30%; /* Default width for desktop */
   margin: 0 50px;
   display: flex;
   flex-direction: column;
