@@ -16,6 +16,7 @@
 
 @media (max-width: 768px) {
   .card-wrapper {
-    width: 80vw;
+    width: 50vw;
+    height: 40vh;
   }
 }

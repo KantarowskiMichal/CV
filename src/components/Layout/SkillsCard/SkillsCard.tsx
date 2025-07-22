@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import './SkillsCard.css';
 
 interface SkillsCardProps {}
@@ -11,9 +11,9 @@ const SkillsCard: FC<SkillsCardProps> = () => (
       <section className="skills-section">
         <h2>Programming Languages</h2>
         <ul>
-          <li>Java</li>
-          <li>Python</li>
-          <li>TypeScript</li>
+          <li><a href="https://www.java.com/">Java</a></li>
+          <li><a href="https://www.python.org/">Python</a></li>
+          <li><a href="https://www.typescriptlang.org/">TypeScript</a></li>
           <li>SQL</li>
         </ul>
       </section>
@@ -21,17 +21,17 @@ const SkillsCard: FC<SkillsCardProps> = () => (
       <section className="skills-section">
         <h2>Web Frameworks & Libraries</h2>
         <ul>
-          <li>Angular</li>
-          <li>Spring</li>
-          <li>Django</li>
-          <li>React</li>
+          <li><a href="https://angular.io/">Angular</a></li>
+          <li><a href="https://spring.io/">Spring</a></li>
+          <li><a href="https://www.djangoproject.com/">Django</a></li>
+          <li><a href="https://reactjs.org/">React</a></li>
         </ul>
       </section>
 
       <section className="skills-section">
         <h2>Machine Learning & AI</h2>
         <ul>
-          <li>TensorFlow</li>
+          <li><a href="https://www.tensorflow.org/">TensorFlow</a></li>
         </ul>
       </section>
 
@@ -47,7 +47,7 @@ const SkillsCard: FC<SkillsCardProps> = () => (
         <h2>Hobbies & Interests</h2>
         <ul>
           <li>Electric Engineering & Robotics <br className="break"/> (Arduino, Raspberry Pi)</li>
-          <li>3D Printing</li>
+          <li><a href="https://en.wikipedia.org/wiki/3D_printing">3D Printing</a></li>
           <li>Parametric 3D Modeling</li>
         </ul>
       </section>

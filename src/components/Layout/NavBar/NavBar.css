@@ -3,13 +3,13 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #5a4a6d; /* Lighter shade of purple */
+  background-color: #5a4a6d;
   height: 50px;
   padding-left: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 998; /* Ensure it stays on top of other content */
-  display: flex; /* Use flexbox for alignment */
-  justify-content: space-between; /* Space out brand and nav items */
+  z-index: 998;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -22,21 +22,21 @@
 .navbar-icon {
   font-size: 1.5em;
   margin-right: 10px;
-  color: #f0f0f0; /* Ensure icon color is consistent */
+  color: #f0f0f0;
 }
 
 .navbar-icon:hover {
-  color: #f0f0f0; /* Prevent color change on hover */
+  color: #f0f0f0;
 }
 
 .navbar-title {
   font-size: 1.2em;
   font-weight: bold;
-  color: #f0f0f0; /* Ensure title color is consistent */
+  color: #f0f0f0;
 }
 
 .navbar-title:hover {
-  color: #f0f0f0; /* Prevent color change on hover */
+  color: #f0f0f0;
 }
 
 .navbar-list {
@@ -47,7 +47,7 @@
   justify-content: flex-start;
   flex-grow: 1;
   height: 100%;
-  border-left: 2px solid rgba(240, 240, 240, 0.2); /* Add left border for separation */
+  border-left: 2px solid rgba(240, 240, 240, 0.2);
 }
 
 .navbar-item {
@@ -58,7 +58,6 @@
   border-left: 2px solid rgba(240, 240, 240, 0.2);
 }
 
-/* last navbar item */
 .navbar-item:last-child {
   border-right: 2px solid rgba(240, 240, 240, 0.2);
 }
@@ -66,7 +65,7 @@
 .navbar-button {
   background: none;
   border: none;
-  color: #f0f0f0; /* Light text color */
+  color: #f0f0f0;
   font-size: 1.1em;
   cursor: pointer;
   padding: 10px 20px;

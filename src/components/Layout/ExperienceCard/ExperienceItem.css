@@ -17,12 +17,12 @@
 
 @media (max-width: 768px) {
   .experience-item {
-    width: 100%; /* Ensure it takes full width on mobile */
-    padding: 15px; /* Adjust padding for mobile */
+    width: 100%;
+    padding: 15px;
   }
 
   .experience-item:last-child {
-    margin-bottom: 0; /* Remove margin from the last item in a column on mobile */
+    margin-bottom: 0;
   }
 }
 

@@ -1,7 +1,7 @@
 .skills-card {
   width: 100vw;
   height: 100vh;
-  background-color: #3a2a4d; /* Same background as other cards */
+  background-color: #3a2a4d;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,7 +49,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: default;
+}
+
+.skills-section li:has(a) {
   cursor: pointer;
+}
+
+.skills-section li:has(a):hover {
+  background-color: #6a5a7d;
+  transform: scale(1.05);
+  transition: transform 0.1s ease-in-out;
+}
+
+.skills-section li a {
+  color: #f0f0f0;
+  text-decoration: none;
 }
 
 .break {
@@ -62,7 +77,7 @@
   }
 
   .break {
-    display: block; /* Show on small screens */
+    display: block;
   }
 
   .skills-section h2 {

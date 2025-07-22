@@ -9,6 +9,7 @@ interface CarouselProps {
 
 const DEFAULT_TRANSITION_DURATION = 300;
 const MIN_STEP_DURATION = 100;
+const SWIPE_THRESHOLD = 50; // pixels
 
 const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
   const rawItems = Children.toArray(children);
@@ -18,12 +19,14 @@ const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
   const [currentIndex, setCurrentIndex] = useState(numVisibleItems);
   const [itemWidth, setItemWidth] = useState(0);
   const [transitionDuration, setTransitionDuration] = useState(DEFAULT_TRANSITION_DURATION);
+  const [touchStartX, setTouchStartX] = useState(0);
 
   const trackRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<HTMLDivElement>(null);
 
   const currentIndexRef = useRef(currentIndex);
   const itemWidthRef = useRef(itemWidth);
+  const isAnimatingRef = useRef(false);
 
   const items = [
     ...rawItems.slice(-numVisibleItems),
@@ -53,6 +56,22 @@ const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
     }
   }, [numVisibleItems]);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (isAnimatingRef.current) return;
+      if (event.key === 'ArrowLeft') {
+        stepToIndex(currentIndexRef.current - 1);
+      } else if (event.key === 'ArrowRight') {
+        stepToIndex(currentIndexRef.current + 1);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   const getTranslateX = (index: number) => {
     const width = itemWidthRef.current;
     const containerWidth = width * numVisibleItems;
@@ -79,6 +98,7 @@ const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
     const duration = Math.max(DEFAULT_TRANSITION_DURATION / steps, MIN_STEP_DURATION);
 
     setTransitionDuration(duration);
+    isAnimatingRef.current = true;
     stepInDirection(direction, steps, duration);
   };
 
@@ -99,6 +119,7 @@ const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
             const jumpIndex = realCount + numVisibleItems - (numVisibleItems - nextIndex);
             jumpWithoutAnimation(jumpIndex);
           }
+          isAnimatingRef.current = false;
         }
       },
     });
@@ -107,10 +128,30 @@ const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
     setCurrentIndex(nextIndex);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (isAnimatingRef.current) return;
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (isAnimatingRef.current) return;
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+
+    if (diff > SWIPE_THRESHOLD) {
+      stepToIndex(currentIndexRef.current + 1); // Swipe left
+    } else if (diff < -SWIPE_THRESHOLD) {
+      stepToIndex(currentIndexRef.current - 1); // Swipe right
+    }
+  };
+
   return (
     <div
       className="carousel-container"
       style={{ width: `${itemWidth * numVisibleItems}px` }}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <animated.div
         className="carousel-track"
