@@ -2,9 +2,9 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: #3a2a4d; /* Same background as other cards */
+  background-color: #3a2a4d;
   display: flex;
-  flex-direction: row; /* Default to row for desktop */
+  flex-direction: row;
   align-items: center;
   justify-content: space-around;
   scroll-snap-align: start;
@@ -14,7 +14,7 @@
 
 .experience-column {
   color: #f0f0f0;
-  width: 30%; /* Default width for desktop */
+  width: 30%;
   margin: 0 50px;
   display: flex;
   flex-direction: column;
@@ -33,7 +33,7 @@
   width: 2px;
   height: 80%;
   background-color: #f0f0f0;
-  display: block; /* Ensure it's always visible */
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -46,15 +46,15 @@
   }
 
   .experience-column {
-    margin: 20px 0; /* Adjust margins for vertical stacking */
-    max-width: 90%; /* Ensure it takes full width on mobile */
-    min-width: 90%; /* Remove min-width constraint */
+    margin: 20px 0;
+    max-width: 90%;
+    min-width: 90%;
     flex-grow: 0;
   }
 
   .separator {
-    width: 80%; /* Make separator horizontal */
-    height: 2px; /* Adjust height for horizontal separator */
-    margin: 20px auto; /* Center horizontal separator */
+    width: 80%;
+    height: 2px;
+    margin: 20px auto;
   }
 }

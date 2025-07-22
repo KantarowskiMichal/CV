@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import './ExperienceCard.css';
 import ExperienceItem from './ExperienceItem';
 
@@ -8,12 +8,12 @@ const ExperienceCard: FC = () => {
 
   const handleToggle = (institution: string) => {
     if (expandedItem && expandedItem !== institution) {
-      setExpandedItem(null); // Collapse the currently expanded item
+      setExpandedItem(null);
       setExpandedItem(institution);
     } else if (expandedItem === institution) {
-      setExpandedItem(null); // Collapse the currently expanded item if it's already open
+      setExpandedItem(null);
     } else {
-      setExpandedItem(institution); // Expand the new item if nothing is open
+      setExpandedItem(institution);
     }
   };
 
