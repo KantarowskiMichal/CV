@@ -46,7 +46,7 @@ const SkillsCard: FC<SkillsCardProps> = () => (
       <section className="skills-section">
         <h2>Hobbies & Interests</h2>
         <ul>
-          <li>Electric Engineering & Robotics (Arduino, Raspberry Pi)</li>
+          <li>Electric Engineering & Robotics <br className="break"/> (Arduino, Raspberry Pi)</li>
           <li>3D Printing</li>
           <li>Parametric 3D Modeling</li>
         </ul>

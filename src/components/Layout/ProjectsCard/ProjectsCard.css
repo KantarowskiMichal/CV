@@ -13,3 +13,9 @@
   height: 60vh;
   overflow: visible;
 }
+
+@media (max-width: 768px) {
+  .card-wrapper {
+    width: 80vw;
+  }
+}

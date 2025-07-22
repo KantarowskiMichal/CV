@@ -1,9 +1,10 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import './ExperienceCard.css';
 import ExperienceItem from './ExperienceItem';
 
 const ExperienceCard: FC = () => {
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
 
   const handleToggle = (institution: string) => {
     if (expandedItem && expandedItem !== institution) {
@@ -17,7 +18,7 @@ const ExperienceCard: FC = () => {
   };
 
   return (
-    <div className="experience-card" data-testid="ExperienceCard">
+    <div className="experience-card" data-testid="ExperienceCard" ref={cardRef}>
       <div className="experience-column">
         <h1>Work Experience</h1>
         <ExperienceItem

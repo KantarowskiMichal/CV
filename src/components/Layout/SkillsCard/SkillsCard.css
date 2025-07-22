@@ -46,4 +46,31 @@
   border-radius: 5px;
   font-size: 1.1em;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.break {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .skills-content h1 {
+    font-size: 2em;
+  }
+
+  .break {
+    display: block; /* Show on small screens */
+  }
+
+  .skills-section h2 {
+    font-size: 1.5em;
+  }
+
+  .skills-section li {
+    font-size: 1em;
+    padding: 8px 15px;
+  }
 }

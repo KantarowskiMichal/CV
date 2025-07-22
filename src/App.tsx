@@ -47,66 +47,10 @@ function App() {
       }
     };
 
-    let touchStartY = 0;
-    const handleTouchStart = (event: TouchEvent) => {
-      if (!isScrollingEnabled) {
-        event.preventDefault();
-        return;
-      }
-      touchStartY = event.touches[0].clientY;
-    };
-
-    const handleTouchMove = (event: TouchEvent) => {
-      if (isAnimating.current || !isScrollingEnabled) {
-        event.preventDefault();
-        return;
-      }
-
-      const touchCurrentY = event.touches[0].clientY;
-      const deltaY = touchCurrentY - touchStartY;
-
-      const direction = deltaY < 0 ? SCROLL_DOWN : SCROLL_UP;
-      const atTopBoundary = currentCardIndex.current === 0 && direction === SCROLL_UP;
-
-      if (!atTopBoundary) {
-        event.preventDefault();
-      }
-    };
-
-    const handleTouchEnd = (event: TouchEvent) => {
-      if (isAnimating.current || !isScrollingEnabled) return;
-
-      const touchEndY = event.changedTouches[0].clientY;
-      const deltaY = touchEndY - touchStartY;
-
-      const SWIPE_THRESHOLD = 50;
-
-      if (Math.abs(deltaY) > SWIPE_THRESHOLD) {
-        const direction = deltaY < 0 ? SCROLL_DOWN : SCROLL_UP;
-        let nextCardIndex = currentCardIndex.current + direction;
-
-        if (nextCardIndex < 0) {
-          nextCardIndex = 0;
-        } else if (nextCardIndex >= cards.length) {
-          nextCardIndex = cards.length - 1;
-        }
-
-        if (nextCardIndex !== currentCardIndex.current) {
-          scrollToCard(nextCardIndex);
-        }
-      }
-    };
-
     appElement.addEventListener('wheel', handleWheel, { passive: false });
-    appElement.addEventListener('touchstart', handleTouchStart, { passive: false });
-    appElement.addEventListener('touchmove', handleTouchMove, { passive: false });
-    appElement.addEventListener('touchend', handleTouchEnd, { passive: false });
 
     return () => {
       appElement.removeEventListener('wheel', handleWheel);
-      appElement.removeEventListener('touchstart', handleTouchStart);
-      appElement.removeEventListener('touchmove', handleTouchMove);
-      appElement.removeEventListener('touchend', handleTouchEnd);
     };
   }, [isScrollingEnabled]);
 

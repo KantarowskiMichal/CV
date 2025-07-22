@@ -47,7 +47,7 @@
   justify-content: flex-start;
   flex-grow: 1;
   height: 100%;
-  border-left: 1px solid rgba(240, 240, 240, 0.2); /* Add left border for separation */
+  border-left: 2px solid rgba(240, 240, 240, 0.2); /* Add left border for separation */
 }
 
 .navbar-item {
@@ -55,7 +55,12 @@
 }
 
 .navbar-item + .navbar-item {
-  border-left: 1px solid rgba(240, 240, 240, 0.2);
+  border-left: 2px solid rgba(240, 240, 240, 0.2);
+}
+
+/* last navbar item */
+.navbar-item:last-child {
+  border-right: 2px solid rgba(240, 240, 240, 0.2);
 }
 
 .navbar-button {
@@ -71,4 +76,28 @@
 
 .navbar-button:hover {
   background-color: #6b5a83;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    display: none;
+  }
+
+  .navbar {
+    padding-left: 0px;
+  }
+  
+  .navbar-list {
+    margin: 0;
+  }
+
+  .navbar-button {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+  }
+
+  .navbar-item {
+    width: 100%;
+  }
 }

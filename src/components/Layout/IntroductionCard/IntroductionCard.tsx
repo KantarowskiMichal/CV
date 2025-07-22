@@ -20,8 +20,8 @@ const IntroductionCard: FC<IntroductionCardProps> = () => (
         Hello! I'm a recent graduate with a Bachelor's in Mathematics and Computer Science. I have a passion for problem-solving and I'm excited to apply my skills and continue developing in the world of software engineering.
       </p>
       <div className="contact-info">
-        <p><FontAwesomeIcon icon={faEnvelope} /> <a href={"mailto:"+EMAIL}>{EMAIL}</a></p>
-        <p><FontAwesomeIcon icon={faPhone} /> <a href={"tel:"+PHONE}>{PHONE}</a></p>
+        <p><a href={"mailto:"+EMAIL}><FontAwesomeIcon icon={faEnvelope} />{EMAIL}</a></p>
+        <p><a href={"tel:"+PHONE}><FontAwesomeIcon icon={faPhone} />{PHONE}</a></p>
         <p><a href={GITHUB} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub} />GitHub</a></p>
         <p><a href={LINKEDIN} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faLinkedin} />LinkedIn</a></p>
       </div>
