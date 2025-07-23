@@ -1,0 +1,33 @@
+.face-gesture-description {
+  font-size: 1.2em;
+  margin-top: 30px;
+  width: 80%;
+}
+
+.collapsed-face-gesture-project-card {
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.face-gesture-view-more {
+  margin-top: 20px;
+  font-style: italic;
+  color: #aaa;
+}
+
+@media (max-width: 768px) {
+  .face-gesture-description {
+    font-size: 1em;
+    width: 90%;
+    margin-top: 5px;
+  }
+
+  .face-gesture-view-more {
+    font-size: 0.9em;
+  }
+}

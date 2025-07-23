@@ -1,14 +1,14 @@
 import React from 'react';
-import './CollapsedProjectCard.css';
+import './CollapsedCvWebsite.css';
 
-const CollapsedProjectCard: React.FC = () => {
+const CollapsedCvWebsite: React.FC = () => {
   return (
     <div className="collapsed-project-card">
       <h2>This Website</h2>
       <p className='description'>A personal CV website to showcase my skills and projects.</p>
-        <div className="view-more">View More</div>
+        <div className="view-more">Click To View More</div>
     </div>
   );
 };
 
-export default CollapsedProjectCard;
+export default CollapsedCvWebsite;

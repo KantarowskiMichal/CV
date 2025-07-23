@@ -55,7 +55,7 @@ const ExpandableCardContent: React.FC<ExpandableCardContentProps> = ({ collapsed
         <div className="expandable-card-content">
             {initialTransformation((style, item) => item ?
                 (
-                    <animated.div style={style}>
+                    <animated.div className="collapsed-content" style={style}>
                         {collapsedContent}
                     </animated.div>
                 ) : (
@@ -65,11 +65,11 @@ const ExpandableCardContent: React.FC<ExpandableCardContentProps> = ({ collapsed
 
             {!isFirstRender && (transitions((style, item) =>
                 item ? (
-                <animated.div style={style}>
+                <animated.div className="expanded-content" style={style}>
                     {expandedContent}
                 </animated.div>
                 ) : (
-                <animated.div style={style}>
+                <animated.div className="collapsed-content" style={style}>
                     {collapsedContent}
                 </animated.div>
                 )

@@ -1,9 +1,9 @@
 import React from 'react';
-import './ProjectDetails.css';
+import './ExpandedCvWebsite.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReact, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
-const ProjectDetails: React.FC = () => {
+const ExpandedCvWebsite: React.FC = () => {
   return (
     <div className="project-details">
       <div className="project-header">
@@ -21,7 +21,7 @@ const ProjectDetails: React.FC = () => {
         <div className="project-description">
           <h3>Description</h3>
           <p>
-            This website is a single-page application built with React and TypeScript with improved responsiveness and animations using React Spring. It serves as a personal CV, allowing me to showcase my skills and projects in an interactive and engaging way.
+            This website is a single-page application built with React and TypeScript with improved responsiveness and animations using React Spring. It serves as a personal CV, allowing me to showcase my skills and projects in an interactive and engaging way. As practice, all of the components and animations were created from scratch, without using any templates or libraries for the layout.
           </p>
         </div>
         <div className="project-link">
@@ -35,4 +35,4 @@ const ProjectDetails: React.FC = () => {
   );
 };
 
-export default ProjectDetails;
+export default ExpandedCvWebsite;

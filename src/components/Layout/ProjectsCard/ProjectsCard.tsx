@@ -2,8 +2,10 @@ import React from 'react';
 import './ProjectsCard.css';
 import Carousel from '../../Carousel/Carousel';
 import ExpandableCard from '../../ExpandableCard/ExpandableCard';
-import CollapsedProjectCard from './CvWebsiteProject/CollapsedProjectCard';
-import ProjectDetails from './CvWebsiteProject/ProjectDetails';
+import CollapsedCvWebsite from './CvWebsiteProject/CollapsedCvWebsite';
+import ExpandedCvWebsite from './CvWebsiteProject/ExpandedCvWebsite';
+import CollapsedFaceGesture from './FaceGestureProject/CollapsedFaceGesture';
+import ExpandedFaceGesture from './FaceGestureProject/ExpandedFaceGesture';
 
 interface ProjectsCardProps {
 }
@@ -14,14 +16,14 @@ const ProjectsCard: React.FC<ProjectsCardProps> = ({}) => {
       <Carousel numVisibleItems={3}>
         <div className="card-wrapper">
           <ExpandableCard
-            collapsedContent={<CollapsedProjectCard />}
-            expandedContent={<ProjectDetails />}
+            collapsedContent={<CollapsedCvWebsite />}
+            expandedContent={<ExpandedCvWebsite />}
           />
         </div>
         <div className="card-wrapper">
           <ExpandableCard
-            collapsedContent={<div>Click to expand2</div>}
-            expandedContent={<div>This is the expanded content2!</div>}
+            collapsedContent={<CollapsedFaceGesture />}
+            expandedContent={<ExpandedFaceGesture />}
           />
         </div>
         <div className="card-wrapper">
