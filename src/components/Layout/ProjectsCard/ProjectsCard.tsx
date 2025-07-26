@@ -26,12 +26,6 @@ const ProjectsCard: React.FC<ProjectsCardProps> = ({}) => {
             expandedContent={<ExpandedFaceGesture />}
           />
         </div>
-        <div className="card-wrapper">
-          <ExpandableCard
-            collapsedContent={<div>Click to expand3</div>}
-            expandedContent={<div>This is the expanded content3!</div>}
-          />
-        </div>
       </Carousel>
     </div>
   );

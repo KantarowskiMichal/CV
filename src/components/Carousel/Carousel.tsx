@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, Children, FC, ReactNode } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 import './Carousel.css';
+import { debug } from 'console';
 
 interface CarouselProps {
   children: ReactNode;
@@ -16,7 +17,7 @@ const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
   const realCount = rawItems.length;
   const totalItems = realCount + 2 * numVisibleItems;
 
-  const [currentIndex, setCurrentIndex] = useState(numVisibleItems);
+  const [currentIndex, setCurrentIndex] = useState(realCount);
   const [itemWidth, setItemWidth] = useState(0);
   const [transitionDuration, setTransitionDuration] = useState(DEFAULT_TRANSITION_DURATION);
   const [touchStartX, setTouchStartX] = useState(0);
@@ -50,7 +51,7 @@ const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
       setItemWidth(width);
       itemWidthRef.current = width;
       api.start({
-        x: getTranslateX(numVisibleItems),
+        x: getTranslateX(realCount),
         config: { duration: 0 },
       });
     }
@@ -113,10 +114,10 @@ const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
         if (remainingSteps > 0) {
           stepInDirection(direction, remainingSteps, duration);
         } else {
-          if (nextIndex >= realCount + numVisibleItems) {
+          if (nextIndex >= (realCount * 2)) {
             jumpWithoutAnimation(nextIndex - realCount);
-          } else if (nextIndex < numVisibleItems) {
-            const jumpIndex = realCount + numVisibleItems - (numVisibleItems - nextIndex);
+          } else if (nextIndex < realCount) {
+            const jumpIndex = (realCount) + nextIndex;
             jumpWithoutAnimation(jumpIndex);
           }
           isAnimatingRef.current = false;
@@ -189,8 +190,8 @@ const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
         {rawItems.map((_, i) => (
           <button
             key={i}
-            className={`dot ${currentIndex === i + numVisibleItems ? 'active' : ''}`}
-            onClick={() => stepToIndex(i + numVisibleItems)}
+            className={`dot ${currentIndex === i + realCount ? 'active' : ''}`}
+            onClick={() => stepToIndex(i + realCount)}
           />
         ))}
       </div>
