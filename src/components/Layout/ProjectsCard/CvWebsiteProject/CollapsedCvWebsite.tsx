@@ -6,7 +6,7 @@ const CollapsedCvWebsite: React.FC = () => {
     <div className="collapsed-project-card">
       <h2>This Website</h2>
       <p className='description'>A personal CV website to showcase my skills and projects.</p>
-        <div className="view-more">Click To View More</div>
+      <p className="view-more">Click To View More</p>
     </div>
   );
 };

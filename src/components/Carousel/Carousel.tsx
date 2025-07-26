@@ -9,7 +9,7 @@ interface CarouselProps {
 
 const DEFAULT_TRANSITION_DURATION = 300;
 const MIN_STEP_DURATION = 100;
-const SWIPE_THRESHOLD = 50; // pixels
+const SWIPE_THRESHOLD = 50;
 
 const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
   const rawItems = Children.toArray(children);
@@ -140,9 +140,9 @@ const Carousel: FC<CarouselProps> = ({ children, numVisibleItems = 1 }) => {
     const diff = touchStartX - touchEndX;
 
     if (diff > SWIPE_THRESHOLD) {
-      stepToIndex(currentIndexRef.current + 1); // Swipe left
+      stepToIndex(currentIndexRef.current + 1);
     } else if (diff < -SWIPE_THRESHOLD) {
-      stepToIndex(currentIndexRef.current - 1); // Swipe right
+      stepToIndex(currentIndexRef.current - 1);
     }
   };
 

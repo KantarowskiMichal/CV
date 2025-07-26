@@ -1,6 +1,4 @@
-import { FC, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import { FC } from 'react';
 import './NavBar.css';
 
 interface NavBarProps {
@@ -9,16 +7,10 @@ interface NavBarProps {
 }
 
 const NavBar: FC<NavBarProps> = ({ cardNames, onNavigate }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
     <nav className="navbar">
+      <img src={`${process.env.PUBLIC_URL}/logo.svg`} alt="Logo" className="navbar-logo" />
       <div className="navbar-brand">
-        <FontAwesomeIcon icon={faFileAlt} className="navbar-icon" />
         <span className="navbar-title">Michal Kantarowski's CV</span>
       </div>
       <ul className={'navbar-list'}>

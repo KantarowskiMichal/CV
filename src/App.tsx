@@ -15,7 +15,6 @@ function App() {
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const currentCardIndex = useRef(0);
   const isAnimating = useRef(false);
-  const [isScrollingEnabled, setIsScrollingEnabled] = useState(true);
 
   const cardNames = ["Introduction", "Experience", "Skills", "Projects"];
 
@@ -27,7 +26,7 @@ function App() {
     cardsRef.current = cards;
 
     const handleWheel = (event: WheelEvent) => {
-      if (isAnimating.current || !isScrollingEnabled) {
+      if (isAnimating.current) {
         event.preventDefault();
         return;
       }
@@ -52,7 +51,7 @@ function App() {
     return () => {
       appElement.removeEventListener('wheel', handleWheel);
     };
-  }, [isScrollingEnabled]);
+  }, []);
 
   const easeInOutCubic = (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
