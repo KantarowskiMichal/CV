@@ -17,7 +17,7 @@ const IntroductionCard: FC<IntroductionCardProps> = () => (
       <h1>Michal Kantarowski</h1>
       <h2>Software Engineer</h2>
       <p>
-        I have recently graduated from Exeter University with a bachelor's in mathematics and computer science. I have a passion for problem solving and strive to apply these skills to working in software engineering.
+        I have recently graduated from Exeter University with a bachelor's in Computer Science and Mathematics. I have a passion for problem solving and strive to apply these skills to working in software engineering.
       </p>
       <div className="contact-info">
         <p><a href={"mailto:"+EMAIL}><FontAwesomeIcon icon={faEnvelope} />{EMAIL}</a></p>

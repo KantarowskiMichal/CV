@@ -35,7 +35,7 @@ const ExperienceCard: FC = () => {
         <h1>Education</h1>
         <ExperienceItem
           institution="University of Exeter"
-          qualification="BSc Mathematics and Computer Science"
+          qualification="BSc Computer Science and Mathematics"
           timeRange="2022 - 2025"
           description="During my degree, I have worked on individual and team-based projects. These include an online game written in Django and React in a team, and two programming tasks which I led. In my final year, I embarked on a project consisting of creating a pipeline for finding the best architecture for a neural network based approach for incorporating facial gestures into video games. Due to the dual nature of my degree, I have learned multiple mathematical concepts that can be applied within programming, developing my understanding of both disciplines."
           grades={['Final grade achieved: 2:1']}
@@ -44,6 +44,7 @@ const ExperienceCard: FC = () => {
         />
         <ExperienceItem
           institution="Northampton School for Boys"
+          
           qualification="A-Levels"
           timeRange="2020 - 2022"
           description="During my A-Levels, I focused on subjects that would enhance my understanding of both mathematics and computer science. I engaged in various projects and practical assessments that allowed me to apply theoretical knowledge to real-world problems. I have also worked on numerous personal projects during this time."
